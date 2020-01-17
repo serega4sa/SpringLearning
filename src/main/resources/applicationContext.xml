@@ -11,4 +11,9 @@
           class="com.chmykhun.springlearning.ClassicalMusic">
     </bean>
 
+    <bean id="musicPlayer"
+          class="com.chmykhun.springlearning.MusicPlayer">
+        <constructor-arg ref="musicBean"/>
+    </bean>
+
 </beans>
