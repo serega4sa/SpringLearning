@@ -9,13 +9,27 @@
 
     <context:property-placeholder location="musicPlayer.properties"/>
 
-    <bean id="musicBean"
+    <bean id="classicalMusicBean"
           class="com.chmykhun.springlearning.ClassicalMusic">
+    </bean>
+
+    <bean id="rockMusicBean"
+          class="com.chmykhun.springlearning.RockMusic">
+    </bean>
+
+    <bean id="jazzMusicBean"
+          class="com.chmykhun.springlearning.JazzMusic">
     </bean>
 
     <bean id="musicPlayer"
           class="com.chmykhun.springlearning.MusicPlayer">
-        <property name="music" ref="musicBean"/>
+        <property name="musicCollection">
+            <list>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="rockMusicBean"/>
+                <ref bean="jazzMusicBean"/>
+            </list>
+        </property>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>

@@ -1,8 +1,11 @@
 package com.chmykhun.springlearning;
 
+import java.util.Collections;
+import java.util.List;
+
 public class MusicPlayer {
 
-    private Music music;
+    private List<Music> musicCollection;
     private String name;
     private int volume;
 
@@ -10,16 +13,16 @@ public class MusicPlayer {
     }
 
     // IoC
-    public MusicPlayer(Music music) {
-        this.music = music;
+    public MusicPlayer(List<Music> musicCollection) {
+        this.musicCollection = musicCollection;
     }
 
-    public void setMusic(Music music) {
-        this.music = music;
+    public void setMusicCollection(List<Music> musicCollection) {
+        this.musicCollection = musicCollection;
     }
 
-    public Music getMusic() {
-        return music;
+    public List<Music> getMusicCollection() {
+        return musicCollection;
     }
 
     public String getName() {
@@ -38,7 +41,12 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
-    public void playMusic() {
-        System.out.println("Playing: " + music.getSong() + " (singer: " + name + ", volume: " + volume + ")");
+    public void playAllSongs() {
+        Collections.shuffle(musicCollection);
+        musicCollection.forEach(this::playSong);
+    }
+
+    public void playSong(Music music) {
+        System.out.println("Playing: " + music.getSong() + " (singer: " + getName() + ", volume: " + getVolume() + ")");
     }
 }
