@@ -10,7 +10,10 @@
     <context:property-placeholder location="musicPlayer.properties"/>
 
     <bean id="classicalMusicBean"
-          class="com.chmykhun.springlearning.ClassicalMusic">
+          class="com.chmykhun.springlearning.ClassicalMusic"
+          init-method="doInit"
+          destroy-method="doDestroy"
+          factory-method="getInstance">
     </bean>
 
     <bean id="rockMusicBean"
