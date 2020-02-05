@@ -8,8 +8,8 @@ import java.util.List;
 @Component
 public class JazzMusic extends Music {
 
-    @Value("#{'${jazz.music}'.split(';')}")
     @Override
+    @Value("#{'${jazz.music}'.split(';')}")
     public void setSongs(List<String> songs) {
         super.setSongs(songs);
     }

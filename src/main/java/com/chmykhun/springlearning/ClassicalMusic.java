@@ -11,14 +11,15 @@ import java.util.List;
 public class ClassicalMusic extends Music {
 
     private ClassicalMusic() {
+        System.out.println("[ClassicalMusic] Constructor");
     }
 
     public static ClassicalMusic getInstance() {
         return new ClassicalMusic();
     }
 
-    @Value("#{'${classical.music}'.split(';')}")
     @Override
+    @Value("#{'${classical.music}'.split(';')}")
     public void setSongs(List<String> songs) {
         super.setSongs(songs);
     }
