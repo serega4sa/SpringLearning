@@ -8,33 +8,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:property-placeholder location="musicPlayer.properties"/>
-
-    <bean id="classicalMusicBean"
-          class="com.chmykhun.springlearning.ClassicalMusic"
-          init-method="doInit"
-          destroy-method="doDestroy"
-          factory-method="getInstance">
-    </bean>
-
-    <bean id="rockMusicBean"
-          class="com.chmykhun.springlearning.RockMusic">
-    </bean>
-
-    <bean id="jazzMusicBean"
-          class="com.chmykhun.springlearning.JazzMusic">
-    </bean>
-
-    <bean id="musicPlayer"
-          class="com.chmykhun.springlearning.MusicPlayer">
-        <property name="musicCollection">
-            <list>
-                <ref bean="classicalMusicBean"/>
-                <ref bean="rockMusicBean"/>
-                <ref bean="jazzMusicBean"/>
-            </list>
-        </property>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    <context:component-scan base-package="com.chmykhun.springlearning"/>
 
 </beans>
