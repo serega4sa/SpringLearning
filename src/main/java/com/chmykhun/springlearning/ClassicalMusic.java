@@ -1,12 +1,14 @@
 package com.chmykhun.springlearning;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.List;
 
 @Component
-public class ClassicalMusic implements Music {
+public class ClassicalMusic extends Music {
 
     private ClassicalMusic() {
     }
@@ -15,9 +17,10 @@ public class ClassicalMusic implements Music {
         return new ClassicalMusic();
     }
 
+    @Value("#{'${classical.music}'.split(';')}")
     @Override
-    public String getSong() {
-        return "Hungarian Rhapsody (Classic)";
+    public void setSongs(List<String> songs) {
+        super.setSongs(songs);
     }
 
     @PostConstruct

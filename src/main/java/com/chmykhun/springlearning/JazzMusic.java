@@ -1,12 +1,16 @@
 package com.chmykhun.springlearning;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
-public class JazzMusic implements Music {
+import java.util.List;
 
+@Component
+public class JazzMusic extends Music {
+
+    @Value("#{'${jazz.music}'.split(';')}")
     @Override
-    public String getSong() {
-        return "Fly me to the moon (Jazz)";
+    public void setSongs(List<String> songs) {
+        super.setSongs(songs);
     }
 }
