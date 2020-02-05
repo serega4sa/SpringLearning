@@ -29,7 +29,10 @@ public class MusicPlayer {
     public void setMusicCollection(List<Music> musicCollection) {
         Map<MusicType, Music> musicMap = new HashMap<>();
         for (MusicType type : MusicType.values()) {
-            musicMap.put(type, getMusicByType(type, musicCollection));
+            Music musicByType = getMusicByType(type, musicCollection);
+            if (musicByType != null) {
+                musicMap.put(type, musicByType);
+            }
         }
         this.musicCollection = musicMap;
     }
