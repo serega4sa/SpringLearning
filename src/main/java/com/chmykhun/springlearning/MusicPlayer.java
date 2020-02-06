@@ -1,12 +1,10 @@
 package com.chmykhun.springlearning;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,25 +23,8 @@ public class MusicPlayer {
     @Value("${musicPlayer.volume}")
     private int volume;
 
-    @Autowired
-    public void setMusicCollection(List<Music> musicCollection) {
-        Map<MusicType, Music> musicMap = new HashMap<>();
-        for (MusicType type : MusicType.values()) {
-            Music musicByType = getMusicByType(type, musicCollection);
-            if (musicByType != null) {
-                musicMap.put(type, musicByType);
-            }
-        }
-        this.musicCollection = musicMap;
-    }
-
-    private Music getMusicByType(MusicType musicType, List<Music> musicCollection) {
-        for (Music music : musicCollection) {
-            if (music.getClass().getSimpleName().toLowerCase().contains(musicType.name().toLowerCase())) {
-                return music;
-            }
-        }
-        return null;
+    public MusicPlayer(Map<MusicType, Music> musicCollection) {
+        this.musicCollection = musicCollection;
     }
 
     public String getName() {
